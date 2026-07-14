@@ -1,0 +1,6 @@
+OrderNumber,Email,CustomerName,OrderDate,Status,Carrier,TrackingNumber,Total,Currency
+AO-1001,erika.mustermann@example.com,Erika Mustermann,2026-07-06,Shipped,DHL,DHL-778812345,249.90,EUR
+AO-1002,erika.mustermann@example.com,Erika Mustermann,2026-06-24,Delivered,DHL,DHL-778809911,417.85,EUR
+AO-1003,erika.mustermann@example.com,Erika Mustermann,2026-07-09,Processing,,,89.95,EUR
+AO-1004,max.mueller@example.com,Max Müller,2026-07-01,Delivered,UPS,1Z999AA10123456784,159.00,EUR
+AO-1005,sofia.rossi@example.com,Sofia Rossi,2026-06-30,Cancelled,,,54.50,EUR

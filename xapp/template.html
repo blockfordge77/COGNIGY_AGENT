@@ -1,0 +1,51 @@
+<!-- =====================================================================
+  Aurora Outdoors — RMA xApp (built artifact template)
+  dist/rma-form.html is generated from this template by `npm run build`.
+  Paste the GENERATED dist/rma-form.html into the Cognigy "xApp: Show HTML" node.
+===================================================================== -->
+<div id="rma-root"></div>
+
+<style>
+  #rma-root { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 480px; margin: 0 auto; padding: 16px; color: #1c2b21; }
+  #rma-root h2 { color: #2E7D32; margin: 0 0 4px; font-size: 1.3rem; }
+  #rma-root .sub { color: #5c6b60; font-size: .9rem; margin-bottom: 16px; }
+  #rma-root .item { display: flex; align-items: center; gap: 12px; border: 2px solid #dfe7e1; border-radius: 10px; padding: 12px; margin-bottom: 10px; cursor: pointer; transition: border-color .15s, background .15s; }
+  #rma-root .item.selected { border-color: #2E7D32; background: #f0f7f1; }
+  #rma-root .item.disabled { opacity: .45; cursor: not-allowed; }
+  #rma-root .thumb { width: 44px; height: 44px; border-radius: 8px; background: #2E7D32; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; flex-shrink: 0; }
+  #rma-root .meta { flex: 1; }
+  #rma-root .name { font-weight: 600; }
+  #rma-root .detail { font-size: .8rem; color: #5c6b60; }
+  #rma-root .badge { font-size: .7rem; background: #eceff1; color: #78909c; border-radius: 6px; padding: 2px 6px; }
+  #rma-root label { display: block; font-weight: 600; margin: 14px 0 6px; font-size: .9rem; }
+  #rma-root select, #rma-root textarea { width: 100%; padding: 10px; border: 2px solid #dfe7e1; border-radius: 8px; font: inherit; box-sizing: border-box; }
+  #rma-root button { width: 100%; margin-top: 16px; padding: 13px; background: #2E7D32; color: #fff; border: 0; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+  #rma-root button:disabled { background: #b8c4bb; cursor: not-allowed; }
+  #rma-root .done { text-align: center; padding: 32px 8px; }
+  #rma-root .done .check { font-size: 2.4rem; }
+</style>
+
+<!--
+  Cognigy xApp Page SDK — served by the xApp host at this relative path and
+  exposing a global `SDK` object (SDK.submit). Fails harmlessly when the file
+  is opened locally; the app then runs in preview mode.
+-->
+<script src="/sdk/app-page-sdk.js"></script>
+
+<!--
+  Cognigy data injection — deliberately its OWN script tag:
+  if the CognigyScript tokens are not replaced (e.g. opening the file locally),
+  only this tag fails to parse; the app bundle below still runs and falls back
+  to sample preview data.
+-->
+<script>
+  window.__COGNIGY_DATA__ = {
+    orderNumber: "{{context.orderNumber}}",
+    locale: "{{input.language}}",
+    items: {{json context.orderItems.items}}
+  };
+</script>
+
+<script>
+/*__BUNDLE__*/
+</script>

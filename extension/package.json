@@ -1,0 +1,22 @@
+{
+  "name": "aurora-airtable-extension",
+  "version": "1.0.0",
+  "description": "Cognigy Extension: Aurora Outdoors order management on Airtable (order status, order items, RMA, support tickets)",
+  "main": "build/module.js",
+  "scripts": {
+    "transpile": "tsc -p .",
+    "smoke": "node smoke-test.js",
+    "zip": "tar cfz aurora-airtable-extension.tar.gz build package.json package-lock.json README.md icon.png",
+    "build": "npm run transpile && npm run zip"
+  },
+  "author": "Austin Rogers",
+  "license": "MIT",
+  "dependencies": {
+    "@cognigy/extension-tools": "^0.17.0",
+    "axios": "^1.7.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0"
+  }
+}

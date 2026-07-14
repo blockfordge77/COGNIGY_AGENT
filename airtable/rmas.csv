@@ -1,0 +1,2 @@
+RmaNumber,OrderNumber,Email,SKU,ProductName,Reason,Status,CreatedAt
+RMA-2026-0041,AO-1004,max.mueller@example.com,BOO-SUMMIT42,Summit Hiking Boots (42),Wrong size,Approved,2026-07-05

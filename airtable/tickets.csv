@@ -1,0 +1,2 @@
+TicketNumber,Email,Subject,Description,Priority,Status,CreatedAt
+TCK-2026-0107,sofia.rossi@example.com,Refund not received,Refund for cancelled order AO-1005 not yet on my card,Medium,Open,2026-07-02

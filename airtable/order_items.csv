@@ -1,0 +1,10 @@
+ItemId,OrderNumber,SKU,ProductName,Quantity,Price,Currency,ReturnEligible
+ITM-0001,AO-1001,TNT-ALPINE2,Alpine 2-Person Tent,1,199.95,EUR,true
+ITM-0002,AO-1001,LMP-TREKLITE,TrekLite Headlamp,1,49.95,EUR,true
+ITM-0003,AO-1002,JKT-STORM-M,StormShell Rain Jacket (M),1,179.95,EUR,true
+ITM-0004,AO-1002,BPK-RIDGE45,Ridge 45L Backpack,1,149.95,EUR,true
+ITM-0005,AO-1002,BTL-THERMO1,ThermoFlask 1L,2,43.95,EUR,false
+ITM-0006,AO-1003,SCK-MERINO3,Merino Hiking Socks (3-pack),1,29.95,EUR,true
+ITM-0007,AO-1003,GLV-GRIP-L,GripTrail Gloves (L),1,60.00,EUR,true
+ITM-0008,AO-1004,BOO-SUMMIT42,Summit Hiking Boots (42),1,159.00,EUR,true
+ITM-0009,AO-1005,MAT-CAMPFOAM,CampFoam Sleeping Mat,1,54.50,EUR,true
