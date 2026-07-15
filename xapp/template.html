@@ -38,11 +38,16 @@
   only this tag fails to parse; the app bundle below still runs and falls back
   to sample preview data.
 -->
+<!--
+  context.orderItemsJson is written by a Code node in the flow
+  (JSON.stringify of the order items) because the {{json ...}}
+  CognigyScript helper is not evaluated inside the xApp HTML field.
+-->
 <script>
   window.__COGNIGY_DATA__ = {
     orderNumber: "{{context.orderNumber}}",
     locale: "{{input.language}}",
-    items: {{json context.orderItems.items}}
+    items: {{context.orderItemsJson}}
   };
 </script>
 

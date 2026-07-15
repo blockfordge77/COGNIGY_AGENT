@@ -121,7 +121,9 @@ async function check(name, nodeType, config, assertions) {
         [
             ["3 line items", (r) => r && r.count === 3],
             ["contains the jacket", (r) => r && r.items.some((i) => i.SKU === "JKT-STORM-M")],
-            ["ThermoFlask flagged not eligible", (r) => r && r.items.some((i) => i.SKU === "BTL-THERMO1" && String(i.ReturnEligible) === "false")]
+            // Airtable checkbox fields omit false values entirely, so "not eligible"
+            // may arrive as "false" (text field) or as an absent field (checkbox)
+            ["ThermoFlask flagged not eligible", (r) => r && r.items.some((i) => i.SKU === "BTL-THERMO1" && String(i.ReturnEligible).toLowerCase() !== "true")]
         ]);
 
     await check("Create RMA", "createRma",

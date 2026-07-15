@@ -35,16 +35,21 @@ intents needed.
 
 ## Tools attached to the AI Agent
 
-Tools are **child nodes of the AI Agent node**; every tool branch ends with a
-**Resolve Tool Action** node that returns the result to the agent (without it, the tool call
-is silently discarded).
+Tools are defined on the AI Agent's job (**Add Tool → Tool**, with typed parameters), and
+**Save & Configure** creates the tool branch in the flow. Inside the branch:
 
-| Tool | Parameters (slots) | Logic under the tool node |
-|------|--------------------|---------------------------|
-| `get_order_status` | `orderNumber`, `email` | Copy params to context → **Get Order Status** (Extension) → **Resolve Tool Action** with `context.orderStatus` |
-| `start_return` | `orderNumber` | **Get Order Items** (Extension) → **Set HTML xApp State** with `xapp/dist/rma-form.html` (Waiting Behavior ON) → submitted payload arrives as `input.data` → copy to `context.returnSelection` → **Create RMA** (Extension) → **Resolve Tool Action** with the RMA number |
-| `create_support_ticket` | `subject`, `description`, `priority` | **Create Support Ticket** (Extension) → **Resolve Tool Action** with the ticket number |
-| `switch_language` | `targetLanguage` (`en`/`de`) | **Switch Locale** node to `de-DE`/`en-US` → **Think node** (required for the switch to apply within the current turn!) → confirmation in the new language |
+- Tool arguments arrive at **`input.aiAgent.toolArgs.<parameter>`**.
+- Every branch ends with a **Tool Answer** node that returns the result to the agent
+  (without it, the tool call is discarded and the agent answers blind).
+- In the Tool Answer text, use plain references (`{{context.orderStatus.Status}}`) — the
+  `{{json ...}}` helper is not evaluated in that field.
+
+| Tool | Parameters | Branch |
+|------|------------|--------|
+| `get_order_status` | `orderNumber`, `email` | **Get Order Status** (Extension; fields `{{input.aiAgent.toolArgs.orderNumber}}` / `{{...toolArgs.email}}`) → **Tool Answer** with the found/status/carrier/tracking fields |
+| `start_return` | `orderNumber` | **Get Order Items** (Extension) → **Set HTML xApp State** with `xapp/dist/rma-form.html` (Waiting Behavior ON) → submitted payload arrives as `input.data` → copy to `context.returnSelection` → **Create RMA** (Extension) → **Tool Answer** with the RMA number |
+| `create_support_ticket` | `subject`, `description`, `priority` | **Create Support Ticket** (Extension) → **Tool Answer** with the ticket number |
+| `switch_language` | `targetLanguage` (`en`/`de`) | **Switch Locale** node to `de-DE`/`en-US` → **Think node** (required for the switch to apply within the current turn) → **Tool Answer** confirming in the new language |
 
 Tool descriptions matter more than names — write them as if explaining to a colleague when to
 use the tool (the LLM reads them). Example for `start_return`:
